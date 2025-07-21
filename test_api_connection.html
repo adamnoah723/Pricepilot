@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Connection Test</title>
+</head>
+<body>
+    <h1>PricePilot API Connection Test</h1>
+    <button onclick="testAPI()">Test API Connection</button>
+    <div id="results"></div>
+
+    <script>
+        async function testAPI() {
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = '<p>Testing API connection...</p>';
+            
+            try {
+                // Test health endpoint
+                const healthResponse = await fetch('http://localhost:8000/api/health');
+                const healthData = await healthResponse.json();
+                console.log('Health check:', healthData);
+                
+                // Test products endpoint
+                const productsResponse = await fetch('http://localhost:8000/api/products');
+                const productsData = await productsResponse.json();
+                console.log('Products:', productsData);
+                
+                resultsDiv.innerHTML = `
+                    <h2>✅ API Connection Successful!</h2>
+                    <p><strong>Health Status:</strong> ${healthData.status}</p>
+                    <p><strong>Products Found:</strong> ${productsData.products.length}</p>
+                    <h3>Sample Products:</h3>
+                    <ul>
+                        ${productsData.products.slice(0, 3).map(p => 
+                            `<li>${p.name} - $${p.best_price}</li>`
+                        ).join('')}
+                    </ul>
+                `;
+                
+            } catch (error) {
+                console.error('API Error:', error);
+                resultsDiv.innerHTML = `
+                    <h2>❌ API Connection Failed</h2>
+                    <p><strong>Error:</strong> ${error.message}</p>
+                    <p>Check console for details</p>
+                `;
+            }
+        }
+    </script>
+</body>
+</html>
