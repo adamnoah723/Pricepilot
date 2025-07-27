@@ -89,6 +89,8 @@ test_*.py
 *_debug.py
 debug_*.py
 *debug*.html
+*_debug.*
+debug_*.*
 
 # Temporary files
 *.tmp
