@@ -1,290 +1,154 @@
-# PricePilot - Smart Price Comparison Platform
+# PricePilot 🚀
 
-PricePilot is a comprehensive price comparison platform for high-ticket tech items like laptops, headphones, and speakers. It scrapes prices from multiple vendors and provides users with real-time price comparisons.
+A modern, hyper-fast price comparison platform for high-ticket tech items. Compare prices instantly across Amazon, Best Buy, Walmart, and brand websites with real-time data and smart search.
+
+![PricePilot Demo](https://via.placeholder.com/800x400/10B981/FFFFFF?text=PricePilot+Price+Comparison)
+
+## ✨ Features
+
+- 🔍 **Smart Search**: Fuzzy matching and autocomplete for easy product discovery
+- 💰 **Real-time Price Comparison**: Live prices from 4+ major retailers
+- 🎯 **Best Deal Highlighting**: Instantly spot the lowest prices and biggest discounts
+- 📱 **Responsive Design**: Beautiful, modern UI that works on all devices
+- 🤖 **Automated Data Collection**: Web scrapers keep price data fresh
+- ⚡ **Lightning Fast**: Optimized for speed with modern tech stack
+
+## 🛍️ Supported Retailers
+
+- **Amazon** - Real-time scraping with stealth capabilities
+- **Best Buy** - Product links and pricing data
+- **Walmart** - Price comparisons and stock status
+- **Brand Websites** - Direct from manufacturer pricing
 
 ## 🚀 Quick Start
 
-### Prerequisites
-
-- **Python 3.9+** (for backend)
-- **Node.js 18+** (for frontend)
-- **PostgreSQL** (for database)
-- **Docker & Docker Compose** (optional, for containerized setup)
-
-### Option 1: Docker Setup (Recommended)
-
-1. **Clone and navigate to the project:**
-   ```bash
-   cd /path/to/your/project
-   ```
-
-2. **Create environment files:**
-   ```bash
-   # Backend environment
-   cp backend/.env.example backend/.env
-   
-   # Frontend environment  
-   cp frontend/.env.example frontend/.env
-   ```
-
-3. **Start all services with Docker:**
-   ```bash
-   docker-compose up --build
-   ```
-
-4. **Access the application:**
-   - **Frontend:** http://localhost:3001
-   - **Backend API:** http://localhost:8001
-   - **API Docs:** http://localhost:8001/docs
-
-### Option 2: Manual Setup
-
-#### Backend Setup
-
-1. **Navigate to backend directory:**
-   ```bash
-   cd backend
-   ```
-
-2. **Create virtual environment:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\\Scripts\\activate
-   ```
-
-3. **Install dependencies:**
-   ```bash
-   pip install -r requirements.txt
-   ```
-
-4. **Set up PostgreSQL database:**
-   ```bash
-   # Install PostgreSQL if not already installed
-   # On macOS:
-   brew install postgresql
-   brew services start postgresql
-   
-   # Create database
-   createdb pricepilot
-   ```
-
-5. **Create environment file:**
-   ```bash
-   cp .env.example .env
-   # Edit .env file with your database credentials
-   ```
-
-6. **Run database migrations:**
-   ```bash
-   alembic upgrade head
-   ```
-
-7. **Start the backend server:**
-   ```bash
-   uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload
-   ```
-
-#### Frontend Setup
-
-1. **Navigate to frontend directory:**
-   ```bash
-   cd frontend
-   ```
-
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
-
-3. **Create environment file:**
-   ```bash
-   cp .env.example .env
-   ```
-
-4. **Start the development server:**
-   ```bash
-   npm run dev
-   ```
-
-## 🔧 Port Configuration
-
-The application uses the following ports by default:
-
-- **Frontend:** 3001
-- **Backend:** 8001 (mapped from internal 8000)
-- **Database:** 5432
-
-### Changing Ports
-
-If you need to use different ports:
-
-1. **Frontend port** - Edit `frontend/vite.config.ts`:
-   ```typescript
-   server: {
-     port: YOUR_PORT,
-     host: true,
-   }
-   ```
-
-2. **Backend port** - Edit `docker-compose.yml` or run uvicorn with different port:
-   ```bash
-   uvicorn app.main:app --port YOUR_PORT
-   ```
-
-3. **Update CORS** - Edit `backend/app/main.py` to allow your frontend port:
-   ```python
-   allow_origins=["http://localhost:YOUR_FRONTEND_PORT"]
-   ```
-
-## 🕷️ Running Scrapers
-
-To populate the database with product data:
-
-1. **Run the scraper pipeline:**
-   ```bash
-   cd backend
-   python run_scrapers.py
-   ```
-
-2. **Run specific vendor scraper:**
-   ```bash
-   python run_scrapers.py --vendor amazon --queries "MacBook Pro" "iPad"
-   ```
-
-3. **Schedule regular scraping** (optional):
-   ```bash
-   # Add to crontab for daily scraping at 2 AM
-   0 2 * * * cd /path/to/backend && python run_scrapers.py
-   ```
-
-## 📊 API Endpoints
-
-### Core Endpoints
-
-- `GET /api/health` - Health check
-- `GET /api/categories` - Get all categories
-- `GET /api/vendors` - Get all vendors
-- `GET /api/search?q={query}` - Search products
-- `GET /api/products` - Get products with filtering
-- `GET /api/products/{id}` - Get product details
-- `GET /api/products/{id}/similar` - Get similar products
-- `GET /api/autocomplete?q={query}` - Search autocomplete
-- `GET /api/scraper-status` - Get scraper run status
-
-### API Documentation
-
-Visit http://localhost:8001/docs for interactive API documentation.
-
-## 🏗️ Architecture
-
-### Backend (FastAPI)
-- **FastAPI** - Modern Python web framework
-- **SQLAlchemy** - Database ORM
-- **PostgreSQL** - Primary database
-- **Alembic** - Database migrations
-- **Pydantic** - Data validation
-
-### Frontend (React)
-- **React 18** - UI framework
-- **TypeScript** - Type safety
-- **Vite** - Build tool
-- **TailwindCSS** - Styling
-- **React Query** - Data fetching
-- **React Router** - Navigation
-
-### Scrapers
-- **Selenium** - Web scraping (Amazon)
-- **aiohttp** - HTTP client (Best Buy, Walmart)
-- **BeautifulSoup** - HTML parsing
-- **Configurable scrapers** - For brand websites
-
-## 🛠️ Development
-
-### Backend Development
+**Get PricePilot running in under 2 minutes:**
 
 ```bash
-cd backend
-source venv/bin/activate
-uvicorn app.main:app --reload --port 8001
+# Clone the repository
+git clone https://github.com/adamnoah723/Pricepilot.git
+cd Pricepilot
+
+# Start with Docker (recommended)
+docker-compose up --build
+
+# Populate with sample data
+docker-compose exec backend python run_scrapers.py
 ```
 
-### Frontend Development
+**Access the application:**
+- 🌐 **Frontend**: http://localhost:3001
+- 🔧 **Backend API**: http://localhost:8000
+- 📚 **API Docs**: http://localhost:8000/docs
 
-```bash
-cd frontend
-npm run dev
+**That's it!** 🎉 Start comparing prices immediately.
+
+## 📋 Detailed Setup
+
+For manual installation, custom configuration, or development setup, see our comprehensive [**SETUP.md**](SETUP.md) guide.
+
+## 🏗️ Tech Stack
+
+**Frontend**
+- React 18 + TypeScript
+- TailwindCSS for styling
+- Vite for blazing-fast builds
+- React Query for data fetching
+
+**Backend**
+- FastAPI for high-performance APIs
+- SQLAlchemy ORM with PostgreSQL/SQLite
+- Async request handling
+- Comprehensive error handling
+
+**Scrapers**
+- Python with async/await
+- Selenium for dynamic content
+- BeautifulSoup for HTML parsing
+- Smart retry logic and rate limiting
+
+**DevOps**
+- Docker & Docker Compose
+- Automated CI/CD ready
+- Environment-based configuration
+
+## 🎯 How It Works
+
+1. **Search**: Enter any tech product (MacBook, headphones, etc.)
+2. **Compare**: See prices from all major retailers instantly
+3. **Save**: Click "View Deal" to go directly to the best price
+4. **Stay Updated**: Prices refresh automatically via background scrapers
+
+## 📊 Project Structure
+
+```
+PricePilot/
+├── 🎨 frontend/          # React TypeScript app
+│   ├── src/components/   # Reusable UI components
+│   ├── src/pages/        # Page components
+│   └── src/services/     # API integration
+├── ⚙️ backend/           # FastAPI server
+│   ├── app/             # Core application logic
+│   ├── alembic/         # Database migrations
+│   └── run_scrapers.py  # Scraper orchestration
+├── 🕷️ scrapers/          # Web scraping modules
+│   ├── amazon_scraper.py # Amazon integration
+│   ├── bestbuy_scraper.py # Best Buy integration
+│   └── base.py          # Scraper base classes
+├── 🐳 docker-compose.yml # Multi-service orchestration
+└── 📋 SETUP.md          # Detailed setup guide
 ```
 
-### Database Operations
+## 🔧 Configuration
 
-```bash
-# Create new migration
-alembic revision --autogenerate -m "Description"
+**Environment Variables:**
+- `VITE_API_URL`: Frontend API endpoint
+- `DATABASE_URL`: Database connection string
+- `SCRAPER_HEADLESS`: Run scrapers in headless mode
+- `*_RATE_LIMIT`: Rate limiting for each vendor
 
-# Apply migrations
-alembic upgrade head
-
-# Rollback migration
-alembic downgrade -1
-```
-
-## 🧪 Testing
-
-### Backend Tests
-```bash
-cd backend
-pytest
-```
-
-### Frontend Tests
-```bash
-cd frontend
-npm test
-```
-
-## 🚨 Troubleshooting
-
-### Common Issues
-
-1. **Port already in use:**
-   - Change ports in configuration files
-   - Kill existing processes: `lsof -ti:PORT | xargs kill -9`
-
-2. **Database connection errors:**
-   - Ensure PostgreSQL is running
-   - Check database credentials in `.env`
-   - Verify database exists
-
-3. **CORS errors:**
-   - Check frontend URL in backend CORS configuration
-   - Ensure ports match between frontend and backend
-
-4. **Scraper issues:**
-   - Install Chrome/Chromium for Selenium
-   - Check rate limiting settings
-   - Verify website selectors are current
-
-### Logs
-
-- **Backend logs:** Check console output or configure logging
-- **Frontend logs:** Check browser developer console
-- **Docker logs:** `docker-compose logs [service_name]`
-
-## 📝 License
-
-This project is licensed under the MIT License.
+**Customization:**
+- Add new retailers by extending `BaseScraper`
+- Modify UI themes in `tailwind.config.js`
+- Configure scraping intervals in `backend/scheduler.py`
 
 ## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests
-5. Submit a pull request
+We welcome contributions! This project follows spec-driven development:
 
-## 📞 Support
+1. 📋 **Requirements**: See `.kiro/specs/price-pilot/requirements.md`
+2. 🎨 **Design**: Architecture in `.kiro/specs/price-pilot/design.md`
+3. ✅ **Tasks**: Implementation plan in `.kiro/specs/price-pilot/tasks.md`
 
-For issues and questions:
-- Check the troubleshooting section
-- Review API documentation at `/docs`
-- Check application logs for error details
+## 🐛 Troubleshooting
+
+**Common Issues:**
+- **Port conflicts**: Use `lsof -ti:8000 | xargs kill -9` to free ports
+- **Docker issues**: Try `docker-compose down && docker-compose up --build`
+- **No products**: Run `python backend/run_scrapers.py` to populate data
+
+See [SETUP.md](SETUP.md) for detailed troubleshooting.
+
+## 📈 Performance
+
+- ⚡ **Sub-second search** with fuzzy matching
+- 🔄 **Real-time updates** via WebSocket connections
+- 📱 **Mobile-optimized** responsive design
+- 🚀 **CDN-ready** static assets
+
+## 🔒 Privacy & Ethics
+
+- 🤖 **Respectful scraping** with rate limiting
+- 🔐 **No personal data** collection
+- 📊 **Transparent pricing** - no affiliate links
+- ⚖️ **Fair use** compliance with robots.txt
+
+## 📄 License
+
+MIT License - feel free to use this project for learning, personal use, or commercial applications.
+
+---
+
+**Built with ❤️ for developers who love clean code and great UX**
+
+⭐ **Star this repo** if PricePilot helps you save money on tech purchases!
